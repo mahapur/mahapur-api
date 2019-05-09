@@ -1,2 +1,2 @@
 #!/bin/sh
-java -jar -Dserver.port=${PORT} App.jar
+java -jar -Dspring.profiles.active=local -Dserver.port=${PORT} App.jar

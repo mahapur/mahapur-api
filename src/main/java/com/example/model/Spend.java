@@ -1,15 +1,23 @@
 package com.example.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "spend")
 public class Spend {
-    private String userName;
+    @Id
+    @Column(name = "user_id")
+    private String userId;
+    @Column(name = "amount")
     private Double amount;
 
-    public String getUserName() {
-        return userName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Double getAmount() {
@@ -23,7 +31,7 @@ public class Spend {
     @Override
     public String toString() {
         return "Spend{" +
-                "userName='" + userName + '\'' +
+                "userId='" + userId + '\'' +
                 ", amount=" + amount +
                 '}';
     }

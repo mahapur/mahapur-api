@@ -1,17 +1,23 @@
-//package com.example.config;
-//
-//import org.springframework.boot.context.properties.ConfigurationProperties;
-//import org.springframework.boot.jdbc.DataSourceBuilder;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.Primary;
-//
-//@Configuration
-//public class DatabaseConfig {
-//    @Bean
-//    @Primary
-//    @ConfigurationProperties( prefix = "spring.datasource" )
-//    public javax.sql.DataSource dataSource() {
-//        return DataSourceBuilder.create().build();
-//    }
-//}
+package com.example.config;
+
+import com.zaxxer.hikari.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import javax.sql.DataSource;
+
+@Configuration
+public class DatabaseConfig {
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+    @Value("${spring.datasource.username}")
+    private String userName;
+
+    @Bean
+    @Primary
+    public DataSource dataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(dbUrl);
+        config.setUsername(userName);
+        return new HikariDataSource(config);
+    }
+}
