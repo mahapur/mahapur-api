@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class GreetingController {
+public class SpendController {
     @Autowired
     private SpendRepository repository;
 
@@ -19,6 +19,10 @@ public class GreetingController {
     @ResponseBody
     public List<Spend> index(@RequestParam("user_name") String userId,
                              @RequestParam("text") String text) {
+        final Spend spend = new Spend();
+        spend.setUserId(userId);
+        spend.setAmount(Double.parseDouble(text));
+        repository.save(spend);
         return repository.findAllSpend(userId);
     }
 }
