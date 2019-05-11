@@ -1,5 +1,7 @@
 CREATE TABLE spend
 (
-    user_id VARCHAR(255) PRIMARY KEY NOT NULL,
-    amount NUMERIC NOT NULL
+    id INTEGER PRIMARY KEY,
+    user_id VARCHAR(255) NOT NULL,
+    amount NUMERIC NOT NULL,
+    creation_time TIMESTAMP DEFAULT NOW() NOT NULL
 );

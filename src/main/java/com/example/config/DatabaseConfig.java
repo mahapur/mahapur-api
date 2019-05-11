@@ -17,7 +17,6 @@ public class DatabaseConfig {
     private String driverName;
 
     @Bean
-    @Primary
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dbUrl);

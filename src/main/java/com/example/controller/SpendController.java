@@ -1,28 +1,34 @@
 package com.example.controller;
 
+import com.example.controller.parser.SpendParser;
 import com.example.model.Spend;
-import com.example.repository.SpendRepository;
+import com.example.model.SpendInfo;
+import com.example.service.SpendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SpendController {
+    private SpendParser spendParser;
+    private SpendService service;
+
     @Autowired
-    private SpendRepository repository;
+    public SpendController(SpendParser spendParser, SpendService service) {
+        this.spendParser = spendParser;
+        this.service = service;
+    }
 
     @PostMapping(value = "/",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<Spend> index(@RequestParam("user_name") String userId,
-                             @RequestParam("text") String text) {
-        final Spend spend = new Spend();
-        spend.setUserId(userId);
-        spend.setAmount(Double.parseDouble(text));
-        repository.save(spend);
-        return repository.findAllSpend(userId);
+    public SpendInfo addSpend(@RequestParam("user_name") String userId,
+                              @RequestParam("text") String text) {
+        final Spend spend = spendParser.parse(userId, text);
+        return service.addSpend(spend);
     }
 }
