@@ -7,6 +7,9 @@ services:
     depends_on:
       - db
   db:
+    container_name: postgres_local
     image: postgres:latest
     ports:
       - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
