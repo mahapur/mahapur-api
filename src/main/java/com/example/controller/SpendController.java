@@ -6,10 +6,7 @@ import com.example.model.SpendInfo;
 import com.example.service.SpendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SpendController {
@@ -28,6 +25,9 @@ public class SpendController {
     @ResponseBody
     public SpendInfo addSpend(@RequestParam("user_name") String userId,
                               @RequestParam("text") String text) {
+        if ("get".equalsIgnoreCase(text)) {
+            return service.get(userId);
+        }
         final Spend spend = spendParser.parse(userId, text);
         return service.addSpend(spend);
     }

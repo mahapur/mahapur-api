@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class SpendParser {
     private String userId;
     private Double amount;
-    private final String SEPARATOR = " ";
+    private final static String SEPARATOR = " ";
 
 
     public Spend parse(String userId, String text) {

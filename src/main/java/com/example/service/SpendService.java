@@ -21,4 +21,9 @@ public class SpendService {
         final Double totalSpend = repository.getTotalSpend(userId);
         return new SpendInfo(userId,totalSpend);
     }
+
+    public SpendInfo get(String userId) {
+        final Double totalSpend = repository.getTotalSpend(userId);
+        return new SpendInfo(userId, totalSpend);
+    }
 }
