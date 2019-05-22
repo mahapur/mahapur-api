@@ -11,4 +11,7 @@ class ErrorObject {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
+
+    public ErrorObject() {
+    }
 }
