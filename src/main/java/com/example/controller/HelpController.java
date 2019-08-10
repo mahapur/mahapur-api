@@ -24,4 +24,10 @@ public class HelpController {
     public List<HelpInfo> getHelp(@PathVariable String city) {
         return service.get(city);
     }
+
+    @GetMapping(value = "/help")
+    @ResponseBody
+    public List<HelpInfo> getAllHelp() {
+        return service.getAll();
+    }
 }

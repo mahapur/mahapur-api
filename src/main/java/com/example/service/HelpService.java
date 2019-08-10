@@ -20,4 +20,11 @@ public class HelpService {
     public List<HelpInfo> get(String city) {
         return repository.findAllByCity(city);
     }
+
+    public List<HelpInfo> getAll() {
+        List<HelpInfo> sangli = repository.findAllByCity("sangli");
+        List<HelpInfo> kolhapur = repository.findAllByCity("kolhapur");
+        sangli.addAll(kolhapur);
+        return sangli;
+    }
 }
