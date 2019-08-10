@@ -1,7 +1,6 @@
-CREATE TABLE spend
+CREATE TABLE help_info
 (
-    id INTEGER PRIMARY KEY,
-    user_id VARCHAR(255) NOT NULL,
-    amount NUMERIC NOT NULL,
-    creation_time TIMESTAMP DEFAULT NOW() NOT NULL
+    id          INTEGER PRIMARY KEY,
+    description VARCHAR(1024),
+    city        VARCHAR(20)
 );
