@@ -27,4 +27,8 @@ public class HelpService {
         sangli.addAll(kolhapur);
         return sangli;
     }
+
+    public HelpInfo create(HelpInfo helpInfo) {
+        return repository.save(helpInfo);
+    }
 }

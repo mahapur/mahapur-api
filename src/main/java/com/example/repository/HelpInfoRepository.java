@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface HelpInfoRepository extends JpaRepository<HelpInfo,Integer> {
+public interface HelpInfoRepository extends JpaRepository<HelpInfo,Long> {
     List<HelpInfo> findAllByCity(String city);
 }

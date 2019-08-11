@@ -3,10 +3,7 @@ package com.example.controller;
 import com.example.model.HelpInfo;
 import com.example.service.HelpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,11 @@ public class HelpController {
     @ResponseBody
     public List<HelpInfo> getAllHelp() {
         return service.getAll();
+    }
+
+    @PostMapping(value = "/help")
+    @ResponseBody
+    public HelpInfo createHelp(@RequestBody HelpInfo helpInfo) {
+        return service.create(helpInfo);
     }
 }
