@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HelpService {
@@ -22,10 +24,12 @@ public class HelpService {
     }
 
     public List<HelpInfo> getAll() {
-        List<HelpInfo> sangli = repository.findAllByCity("sangli");
-        List<HelpInfo> kolhapur = repository.findAllByCity("kolhapur");
-        sangli.addAll(kolhapur);
-        return sangli;
+        List<HelpInfo> list1 = repository.findAllByCity("sangli");
+        List<HelpInfo> list2 = repository.findAllByCity("kolhapur");
+        list1.addAll(list2);
+        return list1.stream()
+                .sorted((o1, o2) -> (int) (o2.getId() - o1.getId()))
+                .collect(Collectors.toList());
     }
 
     public HelpInfo create(HelpInfo helpInfo) {
