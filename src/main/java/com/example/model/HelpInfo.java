@@ -15,6 +15,12 @@ public class HelpInfo {
     private String description;
     @Column(name = "city")
     private String city;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "help_type")
+    private String helpType;
+    @Column(name = "contact")
+    private String contact;
 
     public Long getId() {
         return id;
@@ -38,5 +44,29 @@ public class HelpInfo {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHelpType() {
+        return helpType;
+    }
+
+    public void setHelpType(String helpType) {
+        this.helpType = helpType;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
