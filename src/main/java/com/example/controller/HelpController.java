@@ -11,10 +11,10 @@ import java.util.List;
 @RestController
 public class HelpController {
     private HelpService service;
-    private CacheService cacheService;
+    private CacheService<HelpInfo> cacheService;
 
     @Autowired
-    public HelpController(HelpService service, CacheService cacheService) {
+    public HelpController(HelpService service, CacheService<HelpInfo> cacheService) {
         this.service = service;
         this.cacheService = cacheService;
     }

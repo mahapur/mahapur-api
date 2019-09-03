@@ -1,6 +1,5 @@
 package com.example.service;
 
-import com.example.model.HelpInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,18 +9,18 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 @Service
-public class CacheService {
-    private Map<String, List<HelpInfo>> map = new HashMap<>();
+public class CacheService<T> {
+    private Map<String, List<T>> map = new HashMap<>();
 
-    public List<HelpInfo> get(String key, Supplier<List<HelpInfo>> supplier) {
+    public List<T> get(String key, Supplier<List<T>> supplier) {
         if (!map.containsKey(key)) {
             map.put(key, supplier.get());
         }
         return map.get(key);
     }
 
-    public void add(String key, HelpInfo helpInfo) {
-        List<HelpInfo> helpInfos = map.get(key);
+    public void add(String key, T helpInfo) {
+        List<T> helpInfos = map.get(key);
         if (helpInfos == null) {
             helpInfos = new LinkedList<>();
         }
